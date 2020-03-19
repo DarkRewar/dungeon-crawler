@@ -10,7 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public bool PlayerIsInRange => 
         _target != null &&
-        Vector3.Distance(transform.position, _target.transform.position) < 1;
+        Vector3.Distance(transform.position, _target.transform.position) <= 1.1f;
 
     private Seeker _seeker;
     private IAstarAI _ia;
@@ -24,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
         _ia = GetComponent<IAstarAI>();
 
         _target = GameManager.Instance.Player;
+        _ia.canMove = false;
     }
 
     public void OnEnable()
@@ -56,7 +57,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (!PlayerIsInRange)
         {
-            StartCoroutine(ExecuteMovement());
+            _seeker.StartPath(transform.position, playerPos, OnPathComplete);
         }
         else
         {
@@ -64,10 +65,21 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    private IEnumerator ExecuteMovement()
+    private void OnPathComplete(Path p)
     {
-        _ia.canMove = true;
-        yield return new WaitForSeconds(0.5f);
-        _ia.canMove = false;
+        StartCoroutine(ExecuteMovement(p));
+    }
+
+    private IEnumerator ExecuteMovement(Path p)
+    {
+        float temp = 0, time = 0.5f;
+        Vector3 start = p.vectorPath[0], end = p.vectorPath[1];
+
+        while(temp < time)
+        {
+            temp += Time.deltaTime;
+            transform.position = Vector3.Lerp(start, end, Mathf.Clamp01(temp / time));
+            yield return null;
+        }
     }
 }
