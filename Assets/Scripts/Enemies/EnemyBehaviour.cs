@@ -10,7 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public bool PlayerIsInRange => 
         _target != null &&
-        Vector3.Distance(transform.position, _target.transform.position) >= 1;
+        Vector3.Distance(transform.position, _target.transform.position) < 1;
 
     private Seeker _seeker;
     private IAstarAI _ia;
@@ -54,7 +54,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void DoMovement(Vector3 playerPos)
     {
-        if (PlayerIsInRange)
+        if (!PlayerIsInRange)
         {
             StartCoroutine(ExecuteMovement());
         }

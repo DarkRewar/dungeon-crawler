@@ -31,12 +31,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.Instance.Player = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.Player = this;
         _baseCamPos = PlayerCamera.transform.localPosition;
     }
 
@@ -101,8 +101,6 @@ public class PlayerBehaviour : MonoBehaviour
 
         CheckInput();
 
-        Debug.Log($"IsMoving = {_isMoving}");
-
         if (_isMoving)
         {
             _actualMoveTime += Time.deltaTime;
@@ -112,7 +110,6 @@ public class PlayerBehaviour : MonoBehaviour
             Vector3 camera = _baseCamPos;
             camera.y = _baseCamPos.y * CameraCurve.Evaluate(_actualMoveTime / MoveTime);
             PlayerCamera.transform.localPosition = camera;
-            Debug.Log(camera);
 
             if (_actualMoveTime >= MoveTime) _isMoving = false;
         }
