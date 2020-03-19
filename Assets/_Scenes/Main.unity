@@ -2381,25 +2381,25 @@ MonoBehaviour:
     Strength: 2
     Defense: 2
   MoveTime: 0.5
-  RotateTime: 1
+  RotateTime: 0.5
   MoveCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -2413,26 +2413,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0.43632084
-      outSlope: 0.43632084
+      inSlope: 0.19999981
+      outSlope: 0.19999981
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.24798693
-      value: 1.1082019
-      inSlope: 0.0005310476
-      outSlope: 0.0005310476
-      tangentMode: 34
+      time: 0.25
+      value: 1.05
+      inSlope: -0.00061533804
+      outSlope: -0.00061533804
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 1
     - serializedVersion: 3
-      time: 0.7366733
-      value: 0.89549685
-      inSlope: -0.019200668
-      outSlope: -0.019200668
+      time: 0.75
+      value: 0.95
+      inSlope: 0.000000059604645
+      outSlope: 0.000000059604645
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -2440,8 +2440,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.3968574
-      outSlope: 0.3968574
+      inSlope: 0.20000005
+      outSlope: 0.20000005
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -3064,7 +3064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1146994578
 Transform:
   m_ObjectHideFlags: 0
