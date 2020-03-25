@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public static Action<Vector3> OnPlayerMove;
 
+    public static Action OnInventoryDisplay;
+
     public PlayerBehaviour Player;
 
     // Start is called before the first frame update
@@ -33,13 +35,17 @@ public class GameManager : MonoBehaviour
 
     public void TriggerAttack(int number)
     {
+        Item item = Player.GetEquippedItem(number);
+
+        if (item == null) return;
+
         Ray ray = new Ray(Player.PlayerCamera.transform.position, Player.PlayerCamera.transform.forward);
-        if(Physics.Raycast(ray, out RaycastHit hit, number))
+        if(Physics.Raycast(ray, out RaycastHit hit, item.Datas.Range))
         {
             EnemyBehaviour enemy = hit.collider.gameObject.GetComponent<EnemyBehaviour>();
             if(enemy != null)
             {
-                enemy.Datas.Lifepoints -= Player.Datas.Strength + (number == 1 ? 2 : 1) - enemy.Datas.Defense;
+                enemy.Datas.Lifepoints -= Player.Datas.Strength + item.Datas.Strength - enemy.Datas.Defense;
             }
             
             if(enemy.PlayerIsInRange)
@@ -55,5 +61,10 @@ public class GameManager : MonoBehaviour
         {
 
         }
+    }
+
+    internal void DisplayInventory()
+    {
+        OnInventoryDisplay?.Invoke();
     }
 }

@@ -9,4 +9,5 @@ public class Stats
     public int MaxLifepoints;
     public int Strength;
     public int Defense;
+    public int Range = 1;
 }
